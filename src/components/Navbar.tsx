@@ -1,6 +1,5 @@
 import { Menu } from "antd";
 import { Header } from "antd/lib/layout/layout";
-import MenuItem from "antd/lib/menu/MenuItem";
 import { useNavigate, useLocation } from "react-router-dom";
 import { RouteNames } from "../router";
 
@@ -8,12 +7,29 @@ function Navbar() {
   const navigate = useNavigate()
   const location = useLocation()
 
+  const menuItems = [
+    {
+      key: "/courses",
+      'data-testid': "courses-link",
+      onClick: () => navigate(RouteNames.COURSES),
+      label: 'Courses'
+    },
+    {
+      key: `/courses/${location.pathname.split('/')[2]}`,
+      'data-testid': "courses-item-link",
+      label: 'Course details',
+      disabled: true,
+    },
+  ]
+
   return (
     <Header>
-      <Menu theme='dark' mode="horizontal" defaultSelectedKeys={[location.pathname]}>
-        <MenuItem key="/courses" data-testid="posts-link" onClick={() => navigate(RouteNames.COURSES)}>Courses</MenuItem>
-        <MenuItem key="/courses/:id" data-testid="users-link" disabled={true}>Course details</MenuItem>
-      </Menu>
+      <Menu 
+        theme='dark'
+        mode="horizontal"
+        selectedKeys={(location.pathname !== `/`) ? [location.pathname] : [RouteNames.COURSES]}
+        items={menuItems} 
+      />
     </Header>
   );
 }

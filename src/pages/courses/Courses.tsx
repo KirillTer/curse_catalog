@@ -29,8 +29,8 @@ const CoursesList: FC = () => {
           <Title level={2} data-testid="posts-page">Courses List</Title>
         </Typography>
       </Row>
-      <Row>
-        <Col span={12} offset={6}>
+      <Row justify="center">
+        <Col style={{minWidth: '300px'}}>
           {error 
             ? <h3>{JSON.stringify(error)}</h3>
             : isLoading 
@@ -57,8 +57,8 @@ const CoursesList: FC = () => {
           }
         </Col>
       </Row>
-      <Row>
-        <Col span={4} offset={10}>
+      <Row justify="center">
+        <Col style={{minWidth: '300px'}}>
           {!isLoading && <Pagination current={page} total={totalCount} onChange={(page) => setPage(page)} />}
         </Col>
       </Row>
