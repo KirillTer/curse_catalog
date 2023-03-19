@@ -31,30 +31,35 @@ const CoursesList: FC = () => {
       </Row>
       <Row>
         <Col span={12} offset={6}>
-          {isLoading && <Spin />}
-          {error && <h1>{JSON.stringify(error)}</h1>}
-          <Space direction="vertical" size="small" style={{ display: 'flex', margin: '1rem 0' }}>
-            <TransitionGroup>
-              {courses &&
-                courses.courses.slice((page-1)*10, page*10).map((course: ICourse) => (
-                  <CSSTransition
-                    key={course.id}
-                    timeout={500}
-                    classNames="postAnimation"
-                  >
-                    <CourseItem
-                      course={course}
-                    />
-                  </CSSTransition>
-                ))
-              }
-            </TransitionGroup>
-          </Space>
+          {error 
+            ? <h3>{JSON.stringify(error)}</h3>
+            : isLoading 
+            ? <Spin />
+            : !courses?.courses.length
+            ? <div>No available courses</div>
+            : <Space direction="vertical" size="small" style={{ display: 'flex', margin: '1rem 0' }}>
+                <TransitionGroup>
+                  {courses &&
+                    courses.courses.slice((page-1)*10, page*10).map((course: ICourse) => (
+                      <CSSTransition
+                        key={course.id}
+                        timeout={500}
+                        classNames="postAnimation"
+                      >
+                        <CourseItem
+                          course={course}
+                        />
+                      </CSSTransition>
+                    ))
+                  }
+                </TransitionGroup>
+              </Space>
+          }
         </Col>
       </Row>
       <Row>
         <Col span={4} offset={10}>
-          {courses && <Pagination current={page} total={totalCount} onChange={(page) => setPage(page)} />}
+          {!isLoading && <Pagination current={page} total={totalCount} onChange={(page) => setPage(page)} />}
         </Col>
       </Row>
     </div>
