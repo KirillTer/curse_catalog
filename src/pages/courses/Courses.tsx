@@ -26,7 +26,7 @@ const CoursesList: FC = () => {
     <div>
       <Row justify="center">
         <Typography>
-          <Title level={2} data-testid="posts-page">Courses List</Title>
+          <Title level={2} data-testid="courses-page">Courses List</Title>
         </Typography>
       </Row>
       <Row justify="center">

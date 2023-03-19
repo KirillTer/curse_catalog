@@ -5,8 +5,6 @@ import { MemoryRouter } from 'react-router-dom';
 import { setupStore } from '../store/store';
 import App from '../App';
 import { Provider } from 'react-redux';
-// import Posts from '../pages/posts/Posts';
-// import Users from '../pages/users/Users';
 
 test('test Routes', async () => {
   render(
@@ -16,7 +14,7 @@ test('test Routes', async () => {
       </Provider>
     </MemoryRouter>
   );
-  await userEvent.click(screen.getByTestId('users-link'))
+  await userEvent.click(screen.getByTestId('courses-link'))
   expect(screen.getByTestId('users-page')).toBeInTheDocument();
   await userEvent.click(screen.getByTestId('posts-link'))
   expect(screen.getByTestId('posts-page')).toBeInTheDocument();

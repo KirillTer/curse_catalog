@@ -1,17 +1,17 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { setupStore } from '../../store/store';
-import Posts from './Courses';
+import CoursesList from './Courses';
 import { Provider } from 'react-redux';
 
 describe('Testing Home page', () => {
-  test('renders Posts page', () => {
+  test('renders Courses page', () => {
     render(
       <Provider store={setupStore()}>
-        <Posts />
+        <CoursesList />
       </Provider>
     );
-    const postTitle = screen.getByTestId('posts-page');
+    const postTitle = screen.getByTestId('courses-page');
     expect(postTitle).toBeInTheDocument();
   });
 })
